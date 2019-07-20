@@ -44,7 +44,7 @@ int main(){
         }
         cout<<"是否添加字幕：1-添加、不添加（默认）,请输入：";
         cin>>isResize;
-        if(isResize=='1')fout<<L".TextSub(\""<<quchu(origin)<<".ass\")";
+        if(isResize=='1')fout<<".TextSub(\""<<quchu(origin)<<".ass\")";
         fout<<endl;
         fout<<"audio=FFAudioSource(\""<<origin<<"\")"<<endl;
         fout<<"AudioDub(video,audio)"<<endl;

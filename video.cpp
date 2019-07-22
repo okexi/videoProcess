@@ -3,7 +3,7 @@
 #include<string>
 using namespace std;
 
-string getName(string a){ //»ñÈ¡¸ÃÊÓÆµÎÄ¼şµÄÎÄ¼şÃû
+string getName(string a){ //è·å–è¯¥è§†é¢‘æ–‡ä»¶çš„æ–‡ä»¶å
     string name,na;
      int pos=a.size();
      for(;a[--pos]!=L'.';){}
@@ -16,7 +16,7 @@ string getName(string a){ //»ñÈ¡¸ÃÊÓÆµÎÄ¼şµÄÎÄ¼şÃû
    }
    return na;
 }
-string quchu(string a){//»ñÈ¡È¥³ıºó×ºÃûµÄÂ·¾¶£¬ÓÃÓÚÌí¼Ó×ÖÄ»Ê±Ê¹ÓÃ
+string quchu(string a){//è·å–å»é™¤åç¼€åçš„è·¯å¾„ï¼Œç”¨äºæ·»åŠ å­—å¹•æ—¶ä½¿ç”¨
     string res;
      int pos=a.size();
      for(;a[--pos]!=L'.';){}
@@ -26,9 +26,9 @@ string quchu(string a){//»ñÈ¡È¥³ıºó×ºÃûµÄÂ·¾¶£¬ÓÃÓÚÌí¼Ó×ÖÄ»Ê±Ê¹ÓÃ
     return res;
 }
 int main(){
-   system("chcp 936");//¸ü¸Äµ±Ç°´°¿Ú±àÂë·½Ê½ÎªGBK£¬·ÀÖ¹ÂÒÂë
+   system("chcp 65001");//æ›´æ”¹å½“å‰çª—å£ç¼–ç æ–¹å¼ä¸ºutf-8ï¼Œä¿è¯ç”Ÿæˆçš„æ ¼å¼ä¸ºutf-8
     const string load="LoadPlugin(\"D:\\Programs\\MeGUI\\tools\\ffms\\ffms2.dll\")\nLoadPlugin(\"D:\\Programs\\MeGUI\\tools\\avisynth_plugin\\VSFilter.dll\")";
-    cout<<"ÇëÊäÈëÍêÕûµÄÊÓÆµµØÖ·£º\n";
+    cout<<"è¯·è¾“å…¥å®Œæ•´çš„è§†é¢‘åœ°å€ï¼š\n";
     string origin;
     getline(cin,origin);
     string name=getName(origin);
@@ -36,28 +36,28 @@ int main(){
     fout.open(name+".avs");
         fout<<load<<endl;
         fout<<"video=FFVideoSource(\""<<origin<<"\")";
-        cout<<"ÊÇ·ñ¸ü¸Ä³ß´ç£º1-¸ü¸Ä¡¢²»¸ü¸Ä£¨Ä¬ÈÏ£©,ÇëÊäÈë£º";
+        cout<<"æ˜¯å¦æ›´æ”¹å°ºå¯¸ï¼š1-æ›´æ”¹ã€ä¸æ›´æ”¹ï¼ˆé»˜è®¤ï¼‰,è¯·è¾“å…¥ï¼š";
         char isResize=0;
         cin>>isResize;
         if(isResize=='1'){
             fout<<".LanczosResize(1280,720)";
         }
-        cout<<"ÊÇ·ñÌí¼Ó×ÖÄ»£º1-Ìí¼Ó¡¢²»Ìí¼Ó£¨Ä¬ÈÏ£©,ÇëÊäÈë£º";
+        cout<<"æ˜¯å¦æ·»åŠ å­—å¹•ï¼š1-æ·»åŠ ã€ä¸æ·»åŠ ï¼ˆé»˜è®¤ï¼‰,è¯·è¾“å…¥ï¼š";
         cin>>isResize;
         if(isResize=='1')fout<<".TextSub(\""<<quchu(origin)<<".ass\")";
         fout<<endl;
         fout<<"audio=FFAudioSource(\""<<origin<<"\")"<<endl;
         fout<<"AudioDub(video,audio)"<<endl;
-        cout<<"ÊÇ·ñÇĞ¸îÊÓÆµ£º1-ÇĞ¸î¡¢²»ÇĞ¸î£¨Ä¬ÈÏ£©,ÇëÊäÈë£º";
+        cout<<"æ˜¯å¦åˆ‡å‰²è§†é¢‘ï¼š1-åˆ‡å‰²ã€ä¸åˆ‡å‰²ï¼ˆé»˜è®¤ï¼‰,è¯·è¾“å…¥ï¼š";
         cin>>isResize;
         if(isResize=='1'){
-            cout<<"Çë·Ö±ğÊäÈëÆğÊ¼Ö¡ºÍ½áÊøÖ¡£º";
+            cout<<"è¯·åˆ†åˆ«è¾“å…¥èµ·å§‹å¸§å’Œç»“æŸå¸§ï¼š";
             int st,en;
             cin>>st>>en;
             fout<<"trim("<<st<<","<<en<<")"<<endl;
         }
         fout.close();
-        cout<<"ÒÑ¾­ÔÚµ±Ç°Ä¿Â¼ÏÂ´´½¨"<<name<<".avs,±àÂë·½Ê½ÎªGBK\n";
+        cout<<"å·²ç»åœ¨å½“å‰ç›®å½•ä¸‹åˆ›å»º"<<name<<".avs,ç¼–ç æ–¹å¼ä¸ºUTF-8\n";
         system("pause");
     return 0;
 }

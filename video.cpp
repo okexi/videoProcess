@@ -38,21 +38,37 @@ int main(int argc, char *argv[])
     fout.open(name + ".avs");
     fout << load << endl;
     fout << "video=FFVideoSource(\"" << origin << "\")";
-    cout << "是否更改尺寸：1-更改、不更改（默认）,请输入：";
+    cout << "是否更改视频尺寸：1-更改为720p、不更改（其他）,请输入：";
     char isResize = 0;
     cin >> isResize;
     if (isResize == '1')
     {
         fout << ".LanczosResize(1280,720)";
     }
-    cout << "是否添加字幕：1-添加、不添加（默认）,请输入：";
+    cout << "是否添加字幕：1-添加、不添加（其他）,请输入：";
     cin >> isResize;
     if (isResize == '1')
         fout << ".TextSub(\"" << quchu(origin) << ".ass\")";
     fout << endl;
     fout << "audio=FFAudioSource(\"" << origin << "\")" << endl;
     fout << "AudioDub(video,audio)" << endl;
-    cout << "是否切割视频：1-切割、不切割（默认）,请输入：";
+    cout<<"是否裁切画面：1-裁切、不裁切（其他），请输入：";
+    cin>>isResize;
+    if(isResize=='1'){
+        cout<<"请分别输入要裁切的像素数(必须为偶数)，按照左，上，右，下的顺序依次输入：";
+        int zuo,you,shang,xia;
+        cin>>zuo>>shang>>you>>xia;
+        fout<<"crop("<<zuo<<","<<shang<<",-"<<you<<",-"<<xia<<")"<<endl;
+    }
+    cout<<"是否添加黑边，1-添加、不添加（其他），请输入：";
+    cin>>isResize;
+    if(isResize=='1'){
+        cout<<"请分别输入要添加的像素数(必须为偶数)，按照左，上，右，下的顺序依次输入：";
+        int zuo,you,shang,xia;
+        cin>>zuo>>shang>>you>>xia;
+        fout<<"addborders("<<zuo<<","<<shang<<","<<you<<","<<xia<<")"<<endl;
+    }
+    cout << "是否截取片段：1-截取、不截取（其他）,请输入：";
     cin >> isResize;
     if (isResize == '1')
     {
